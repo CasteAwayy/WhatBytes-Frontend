@@ -1,0 +1,21 @@
+function Option({ name, label, value }) {
+  return (
+    <label className="flex items-center gap-2 cursor-pointer">
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        className="hidden peer"
+        defaultChecked={label === "All" ? true : false}
+      />
+      <div className="w-4 h-4 rounded-full peer-checked:border-3 border-1 border-gray-400 peer-checked:border-white">
+        <div className="hidden peer-checked:block w-3 h-3 rounded-full bg-white m-1"></div>
+      </div>
+      <span className="peer-checked:text-white peer-checked:font-medium">
+        {label}
+      </span>
+    </label>
+  );
+}
+
+export default Option;
