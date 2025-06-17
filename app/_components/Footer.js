@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
 
         {/* Follow Us Section */}
-        <div>
+        <div className="pr-40">
           <h2 className="text-xl font-bold mb-4">Follow Us</h2>
           <div className="flex space-x-4">
             <a href="#">
