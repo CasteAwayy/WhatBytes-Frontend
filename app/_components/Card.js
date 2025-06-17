@@ -13,7 +13,7 @@ function Card() {
         className="self-center"
       />
       <StarRating rating={2.6} />
-      <span className="font-semibold">Title</span>
+      <span className="font-semibold">Shoes</span>
       <span className="font-bold">$99</span>
       <button className="text-white bg-[#005FBA] cursor-pointer py-2 px-6 rounded-lg font-semibold">
         Add to cart
