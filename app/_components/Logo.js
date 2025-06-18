@@ -1,5 +1,5 @@
 function Logo() {
-  return <h1 className="font-bold text-[2.5rem]">Logo</h1>;
+  return <h1 className="font-bold lg:text-[2.5rem] sm:text-lg">Logo</h1>;
 }
 
 export default Logo;

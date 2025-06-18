@@ -14,7 +14,7 @@ function Input() {
   }
   return (
     <form
-      className="flex items-center gap-2 border-[#5B8CBE] border-1 rounded-lg py-2 px-5 min-w-[30%]"
+      className="relative flex items-center gap-2 border-[#5B8CBE] border-1 rounded-lg sm:py-2 sm:px-5 py-1 px-1 sm:min-w-[30%] w-[45%]"
       onSubmit={handleSubmit}
     >
       <Search />
@@ -23,7 +23,7 @@ function Input() {
         placeholder="Search for products..."
         value={productSearch}
         onChange={(e) => setProductSearch(e.target.value)}
-        className="placeholder-white outline-none"
+        className="placeholder-white outline-none placeholder:text-sm sm:placeholder:text-lg"
       />
     </form>
   );
