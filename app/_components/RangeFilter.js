@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from "react";
 import PriceRangeSlider from "./RangeSlider";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
 
 function RangeFilter() {
@@ -15,7 +14,6 @@ function RangeFilter() {
   const currentCategory = searchParams.get("category") || "all";
   const currentPrice = searchParams.get("price") || "0-1000";
 
-  // Memoize your onChange handler if it's defined in a parent component
   const handlePriceChange = useCallback((range) => {
     setPriceRange(range);
   }, []);
