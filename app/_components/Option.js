@@ -2,6 +2,7 @@
 
 import { filterByCategory } from "@/lib/features/shopping/shoppingSlice";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 // import { filterByCategory } from "@/lib/features/shopping/shoppingSlice";
@@ -14,6 +15,14 @@ function Option({ name, label, value, setCategory }) {
   const dispatch = useDispatch();
   const category = searchParams.get("category") || "all";
   const params = new URLSearchParams(searchParams);
+  useEffect(() => {
+    dispatch(
+      filterByCategory({
+        category: searchParams.get("category"),
+        price: searchParams.get("price"),
+      })
+    );
+  }, [dispatch, searchParams]);
   return (
     <label className="flex items-center gap-2 cursor-pointer">
       <input
