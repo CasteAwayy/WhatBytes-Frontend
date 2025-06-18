@@ -1,4 +1,4 @@
-function Option({ name, label, value }) {
+function Option({ name, label, value, setCategory }) {
   return (
     <label className="flex items-center gap-2 cursor-pointer">
       <input
@@ -6,6 +6,7 @@ function Option({ name, label, value }) {
         name={name}
         value={value}
         className="hidden peer"
+        onChange={(e) => setCategory(e.target.value)}
         defaultChecked={label === "All" ? true : false}
       />
       <div className="w-4 h-4 rounded-full peer-checked:border-3 border-1 border-gray-400 peer-checked:border-white">
