@@ -1,18 +1,14 @@
 "use client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useQueryParams } from "@/hooks/useQueryParams";
 
 function Option({ name, label, value }) {
-  const pathname = usePathname();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
-  const category = searchParams.get("category") || "all";
-  
+  const { queryParams, setQueryParams } = useQueryParams();
+
+  const category = queryParams.get("category") || "all";
+
   function handleChange() {
-    params.set("category", value);
-    router.replace(`${pathname}?${params.toString()}`, {
-      scroll: false,
-    });
+    queryParams.set("category", value);
+    setQueryParams(queryParams);
   }
   return (
     <label className="flex items-center gap-2 cursor-pointer">

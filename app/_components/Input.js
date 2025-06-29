@@ -1,20 +1,18 @@
 "use client";
 
+import { useQueryParams } from "@/hooks/useQueryParams";
 import { Search } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 function Input() {
   const [productSearch, setProductSearch] = useState("");
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
+  const { queryParams, setQueryParams } = useQueryParams();
 
   function handleSubmit(e) {
     e.preventDefault();
-    params.set("search", productSearch);
-    router.replace(`${pathname}?${params.toString()}`);
+    if (!productSearch) queryParams.delete("search");
+    else queryParams.set("search", productSearch);
+    setQueryParams(queryParams);
   }
   return (
     <form

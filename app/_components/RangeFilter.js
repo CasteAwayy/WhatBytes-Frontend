@@ -5,24 +5,22 @@ import PriceRangeSlider from "./RangeSlider";
 import { useQueryParams } from "@/hooks/useQueryParams";
 
 function RangeFilter() {
-  const { setQueryParams, searchParams } = useQueryParams();
+  const { queryParams, setQueryParams } = useQueryParams();
+
   const [priceRange, setPriceRange] = useState({
     min: 0,
     max: 1000,
   });
 
-  const currentCategory = searchParams.get("category") || "all";
-  const currentPrice = searchParams.get("price") || "0-1000";
+  const currentPrice = queryParams.get("price") || "0-1000";
 
   const handlePriceChange = useCallback((range) => {
     setPriceRange(range);
   }, []);
 
   function handleFilterLogic(e) {
-    setQueryParams({
-      category: currentCategory,
-      price: `${priceRange.min}-${priceRange.max}`,
-    });
+    queryParams.set("price", `${priceRange.min}-${priceRange.max}`);
+    setQueryParams(queryParams);
   }
   return (
     <div className="flex flex-col">
