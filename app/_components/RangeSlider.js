@@ -85,6 +85,7 @@ const PriceRangeSlider = ({
             setMinVal(value);
           }}
           onMouseUp={onMouseUp}
+          onTouchEnd={onMouseUp}
           className={`absolute w-full top-0 h-1 appearance-none pointer-events-none bg-transparent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:relative [&::-webkit-slider-thumb]:z-10`}
           style={{ zIndex: minVal > maxPrice - 100 ? 5 : 3 }}
         />

@@ -4,7 +4,12 @@ import Image from "next/image";
 function Error({ type }) {
   return (
     <div className="relative text-[#A3A1A2] flex flex-col items-center justify-center mt-3">
-      <Image src={notfound} alt="Not Found" height="300" />
+      <Image
+        src={notfound}
+        alt="Not Found"
+        height="300"
+        className="select-none"
+      />
       <h1 className="sm:text-6xl text-2xl font-bold capitalize">
         no {type}s found
       </h1>

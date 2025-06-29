@@ -1,16 +1,18 @@
 "use client";
 
-import { filterBySearch } from "@/lib/features/shopping/shoppingSlice";
+import { useQueryParams } from "@/hooks/useQueryParams";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 function Input() {
   const [productSearch, setProductSearch] = useState("");
-  const dispatch = useDispatch();
+  const { queryParams, setQueryParams } = useQueryParams();
+
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(filterBySearch(productSearch));
+    if (!productSearch) queryParams.delete("search");
+    else queryParams.set("search", productSearch);
+    setQueryParams(queryParams);
   }
   return (
     <form
