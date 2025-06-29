@@ -1,16 +1,20 @@
 "use client";
 
-import { filterBySearch } from "@/lib/features/shopping/shoppingSlice";
 import { Search } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 function Input() {
   const [productSearch, setProductSearch] = useState("");
-  const dispatch = useDispatch();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(filterBySearch(productSearch));
+    params.set("search", productSearch);
+    router.replace(`${pathname}?${params.toString()}`);
   }
   return (
     <form

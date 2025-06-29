@@ -1,11 +1,22 @@
-"use client";
-
-import { useSelector } from "react-redux";
 import Card from "./Card";
 import Error from "./Error";
+import { data } from "@/public/data";
 
-function ProductsGrid() {
-  let { filteredData } = useSelector((state) => state.shopping);
+async function ProductsGrid({ filter }) {
+  let filteredData;
+  const { category = "all", price = "0-1000", search = "" } = filter;
+  const [minPrice, maxPrice] = price?.split("-");
+  if (category === "all" && price)
+    filteredData = data
+      .filter((data) => data.title.toLowerCase().includes(search))
+      .filter((data) => data.price >= minPrice && data.price <= maxPrice);
+  else {
+    filteredData = data
+      .filter((data) => data.title.toLowerCase().includes(search))
+      .filter((data) => data.category.toLowerCase() === category)
+      .filter((data) => data.price >= minPrice && data.price <= maxPrice);
+  }
+
   return (
     <div className="flex-auto p-9 ml-5">
       <h1 className="text-[#053762] font-bold text-4xl">Product Listing</h1>

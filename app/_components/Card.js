@@ -4,7 +4,7 @@ import Image from "next/image";
 import StarRating from "./StarRating";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/lib/features/cart/cartReducer";
+import { addToCart } from "@/app/_lib/features/cart/cartReducer";
 
 function Card({ product }) {
   const dispatch = useDispatch();

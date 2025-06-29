@@ -5,7 +5,7 @@ import {
   clearCart,
   deleteFromCart,
   removeFromCart,
-} from "@/lib/features/cart/cartReducer";
+} from "@/app/_lib/features/cart/cartReducer";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 

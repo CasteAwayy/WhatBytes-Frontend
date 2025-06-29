@@ -1,28 +1,19 @@
 "use client";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { filterByCategory } from "@/lib/features/shopping/shoppingSlice";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-
-// import { filterByCategory } from "@/lib/features/shopping/shoppingSlice";
-// import { useSearchParams } from "next/navigation";
-// import { useDispatch } from "react-redux";
-
-function Option({ name, label, value, setCategory }) {
+function Option({ name, label, value }) {
+  const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const dispatch = useDispatch();
-  const category = searchParams.get("category") || "all";
   const params = new URLSearchParams(searchParams);
-  useEffect(() => {
-    dispatch(
-      filterByCategory({
-        category: searchParams.get("category"),
-        price: searchParams.get("price"),
-      })
-    );
-  }, [dispatch, searchParams]);
+  const category = searchParams.get("category") || "all";
+  
+  function handleChange() {
+    params.set("category", value);
+    router.replace(`${pathname}?${params.toString()}`, {
+      scroll: false,
+    });
+  }
   return (
     <label className="flex items-center gap-2 cursor-pointer">
       <input
@@ -30,11 +21,7 @@ function Option({ name, label, value, setCategory }) {
         name={name}
         value={value}
         className="hidden peer"
-        onChange={(e) => {
-          params.set("category", e.target.value);
-          dispatch(filterByCategory(e.target.value));
-          router.push(`?${params.toString()}`);
-        }}
+        onChange={handleChange}
         defaultChecked={value === category ? true : false}
       />
       <div className="w-4 h-4 rounded-full peer-checked:border-3 border-1 border-gray-400 peer-checked:border-white">

@@ -1,17 +1,15 @@
-import Header from "./_components/Header";
-import Footer from "./_components/Footer";
-import Main from "./_components/Main";
-import { Suspense } from "react";
+import Sidebar from "./_components/Sidebar";
+import ProductsGrid from "./_components/ProductsGrid";
 
-function page() {
+async function page({ searchParams }) {
+  const search = await searchParams;
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="flex flex-col">
-        <Header />
-        <Main />
-        <Footer />
-      </div>
-    </Suspense>
+    <div className="flex flex-col">
+      <main className="md:flex md:flex-row flex-col bg-[#F9FBFF] min-h-dvh text-white">
+        <Sidebar />
+        <ProductsGrid filter={search} />
+      </main>
+    </div>
   );
 }
 

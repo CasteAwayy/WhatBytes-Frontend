@@ -537,6 +537,7 @@ const initialState = {
       },
     },
   ],
+  
 };
 
 export const shoppingSlice = createSlice({
@@ -544,7 +545,7 @@ export const shoppingSlice = createSlice({
   initialState,
   reducers: {
     filterBySearch(state, action) {
-      state.filteredData = state.data.filter((product) =>
+      state.filteredData = state.filteredData.filter((product) =>
         product.title.toLowerCase().includes(action.payload)
       );
     },
@@ -552,7 +553,7 @@ export const shoppingSlice = createSlice({
       let { category, price } = action.payload;
       if (price === null) price = "0-1000";
       if (category && category !== "all") {
-        state.filteredData = state.data.filter(
+        state.filteredData = state.filteredData.filter(
           (product) =>
             product.category.toLowerCase() === category.toLowerCase() &&
             product.price >= +price?.split("-")[0] &&
@@ -560,7 +561,7 @@ export const shoppingSlice = createSlice({
         );
       }
       if (category === "all") {
-        state.filteredData = state.data.filter(
+        state.filteredData = state.filteredData.filter(
           (product) =>
             product.price >= +price?.split("-")[0] &&
             product.price <= +price?.split("-")[1]
