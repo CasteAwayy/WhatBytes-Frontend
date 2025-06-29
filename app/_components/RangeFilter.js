@@ -6,7 +6,6 @@ import { useQueryParams } from "@/hooks/useQueryParams";
 
 function RangeFilter() {
   const { queryParams, setQueryParams } = useQueryParams();
-
   const [priceRange, setPriceRange] = useState({
     min: 0,
     max: 1000,

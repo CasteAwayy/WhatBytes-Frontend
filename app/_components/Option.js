@@ -3,7 +3,6 @@ import { useQueryParams } from "@/hooks/useQueryParams";
 
 function Option({ name, label, value }) {
   const { queryParams, setQueryParams } = useQueryParams();
-
   const category = queryParams.get("category") || "all";
 
   function handleChange() {

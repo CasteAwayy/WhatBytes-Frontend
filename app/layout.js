@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 import "./global.css";
+import { Suspense } from "react";
 
 const montserrat = Montserrat({
   style: ["normal"],
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         <ReduxProvider>
-          <Header />
+          <Suspense fallback={<p>Loading...</p>}>
+            <Header />
+          </Suspense>
           {children}
         </ReduxProvider>
         <Footer />
